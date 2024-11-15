@@ -1,4 +1,18 @@
-<!doctype html>
+<?php
+
+// Ceci est un commentaire single-line
+
+/*
+Ceci
+est
+un
+commentaire
+multi-line
+*/
+
+$today = date('d/m/Y H:i:s');
+
+?><!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,7 +21,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title><?= 'Chocolatté '.date('j/m/Y H:i:s') ?></title>
+        <title><?= 'Chocolatté '.$today ?></title>
 
         <!-- CSS FILES -->                
         <link rel="preconnect" href="https://fonts.googleapis.com">
