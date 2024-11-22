@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-11-22 10:49:04 +0000
+# Temps de génération: 2024-11-22 10:58:16 +0000
 # ************************************************************
 
 
@@ -149,6 +149,7 @@ CREATE TABLE `products` (
   `discount` int DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `products_product_category_id_product_categories_id` (`product_category_id`),
   CONSTRAINT `products_product_category_id_product_categories_id` FOREIGN KEY (`product_category_id`) REFERENCES `product_categories` (`id`) ON DELETE RESTRICT
