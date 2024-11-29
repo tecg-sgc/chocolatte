@@ -4,7 +4,7 @@ abstract class BaseModel
 {
     public static $instances = [];
 
-    protected $connection;
+    protected $connexion;
 
     function __construct()
     {
