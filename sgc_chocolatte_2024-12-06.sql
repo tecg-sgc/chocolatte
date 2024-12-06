@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-06 14:00:59 +0000
+# Temps de génération: 2024-12-06 15:59:44 +0000
 # ************************************************************
 
 
@@ -222,11 +222,11 @@ LOCK TABLES `products` WRITE;
 INSERT INTO `products` (`id`, `product_category_id`, `name`, `description`, `tag`, `price`, `discount`, `created_at`, `updated_at`, `deleted_at`)
 VALUES
 	(1,5,'Pancake nature','Un pancake est une crêpe épaisse et moelleuse.',NULL,1250,NULL,'2024-11-23 11:35:28','2024-11-23 11:35:28',NULL),
-	(2,5,'Gaufre grillée','C\'est une gaufre croustillante à l\'extérieur, moelleuse à l\'intérieur,',NULL,1200,1650,'2024-11-23 11:37:26','2024-11-23 11:37:26',NULL),
-	(3,5,'Gateau au chocolat','Dessert moelleux et riche.','Recommander',1800,NULL,'2024-11-23 11:39:10','2024-11-23 11:39:10',NULL),
-	(4,5,'Mousse au chocolat','Dessert léger et aérien',NULL,1400,1700,'2024-11-23 11:40:25','2024-11-23 11:40:25',NULL),
+	(2,5,'Gaufre grillée','C\'est une gaufre croustillante à l\'extérieur, moelleuse à l\'intérieur,',NULL,1650,1200,'2024-11-23 11:37:26','2024-11-23 11:37:26',NULL),
+	(3,5,'Gateau au chocolat','Dessert moelleux et riche.','Recommandé',1800,NULL,'2024-11-23 11:39:10','2024-11-23 11:39:10',NULL),
+	(4,5,'Mousse au chocolat','Dessert léger et aérien',NULL,1700,1400,'2024-11-23 11:40:25','2024-11-23 11:40:25',NULL),
 	(5,5,'Cake nature','Dessert moelleux',NULL,1400,NULL,'2024-11-23 11:41:09','2024-11-23 11:41:09',NULL),
-	(6,6,'Latte','Café fraîchement préparé avec du lait vapeur.','Recommander',1250,NULL,'2024-11-23 11:42:30','2024-11-23 11:42:30',NULL),
+	(6,6,'Latte','Café fraîchement préparé avec du lait vapeur.','Recommandé',1250,NULL,'2024-11-23 11:42:30','2024-11-23 11:42:30',NULL),
 	(7,6,'Café blanc','Café infusé et lait vapeur.',NULL,590,NULL,'2024-11-23 11:44:08','2024-11-23 11:44:08',NULL),
 	(8,8,'Chocolat chaud classique','Boisson crémeuse et réconfortante.',NULL,550,NULL,'2024-11-23 11:45:23','2024-11-23 11:45:23',NULL),
 	(9,7,'Thé vert','Infusion légère et délicate.',NULL,750,NULL,'2024-11-23 11:46:18','2024-11-23 11:46:18',NULL),
