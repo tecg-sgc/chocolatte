@@ -8,6 +8,7 @@ class HomeController extends BaseController
             'pre' => 'Bienvenue chez',
             'title' => 'Chocolatte',
             'employees' => Employee::getHomepageEmployees(),
+            'reviews' => Review::getHomepageReviews(),
         ]);
     }
 }

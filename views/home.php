@@ -373,98 +373,49 @@ Bootstrap 5 HTML CSS Template
                             </div>
 
                             <div class="timeline">
-                                <div class="timeline-container timeline-container-left">
+                                <?php foreach($reviews as $index => $review): ?>
+                                <div class="timeline-container timeline-container-<?= ($index % 2 === 0) ? 'left' : 'right'; ?>">
                                     <div class="timeline-content">
                                         <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/young-woman-with-round-glasses-yellow-sweater.jpg" class="reviews-block-image img-fluid" alt="">
+                                            <div class="reviews-block-image-wrap d-flex align-items-center" style="background-image: url(<?= $review->cover_img; ?>);">
+                                                <img src="<?= $review->avatar_img; ?>" class="reviews-block-image img-fluid" alt="Photo de <?= $review->customer; ?>">
 
                                                 <div class="">
-                                                    <h6 class="text-white mb-0">Sandra</h6>
+                                                    <h6 class="text-white mb-0"><?= $review->customer; ?></h6>
                                                     <em class="text-white"> Customers</em>
                                                 </div>
                                             </div>
 
                                             <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <p><?= $review->content; ?></p>
 
                                                 <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
+                                                    <strong class="text-white"><?= number_format($review->rating / 10, 1, ',', ' '); ?> <small class="ms-2">Rating</small></strong>
 
+                                                    <?php /*
+                                                    <!-- Première version possible: -->
                                                     <div class="reviews-group ms-auto">
+                                                        <?php for($i=0; $i < floor($review->rating / 10); $i++): ?>
                                                         <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
+                                                        <?php endfor; ?>
+                                                        <?php for($i=0; $i < 5 - floor($review->rating / 10); $i++): ?>
                                                         <i class="bi-star"></i>
+                                                        <?php endfor; ?>
                                                     </div>
+                                                    */ ?>
+                                                    <!-- Deuxième version possible -->
+                                                    <div class="reviews-group ms-auto">
+                                                        <?php for($i=0; $i < 5; $i++): ?>
+                                                        <i class="bi-star<?= ($i < floor($review->rating / 10)) ? '-fill' : ''; ?>"></i>
+                                                        <?php endfor; ?>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="timeline-container timeline-container-right">
-                                    <div class="timeline-content">
-                                        <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/senior-man-white-sweater-eyeglasses.jpg" class="reviews-block-image img-fluid" alt="">
-
-                                                <div class="">
-                                                    <h6 class="text-white mb-0">Don</h6>
-                                                    <em class="text-white"> Customers</em>
-                                                </div>
-                                            </div>
-
-                                            <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                                <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
-
-                                                    <div class="reviews-group ms-auto">
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-container timeline-container-left">
-                                    <div class="timeline-content">
-                                        <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg" class="reviews-block-image img-fluid" alt="">
-
-                                                <div class="">
-                                                    <h6 class="text-white mb-0">Olivia</h6>
-                                                    <em class="text-white"> Customers</em>
-                                                </div>
-                                            </div>
-
-                                            <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                                <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
-
-                                                    <div class="reviews-group ms-auto">
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
 
                         </div>
