@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-11-29 15:00:03 +0000
+# Temps de génération: 2024-12-06 14:00:59 +0000
 # ************************************************************
 
 
@@ -247,7 +247,7 @@ CREATE TABLE `reviews` (
   `cover_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `avatar_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `rating` int NOT NULL,
+  `rating` int unsigned NOT NULL,
   `certified_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -259,9 +259,9 @@ LOCK TABLES `reviews` WRITE;
 
 INSERT INTO `reviews` (`id`, `customer`, `cover_img`, `avatar_img`, `content`, `rating`, `certified_at`, `created_at`, `updated_at`)
 VALUES
-	(1,'Sandra','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','http://chocolatte.test/images/reviews/young-woman-with-round-glasses-yellow-sweater.jpg','\"Excellente boisson gourmande !\"\nSi vous aimez le chocolat et le café, vous allez adorer cette boisson. Le goût est riche, la texture est parfaite, et ça vous donne un bon boost.',40,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29'),
-	(2,'Don','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','http://chocolatte.test/images/reviews/senior-man-white-sweater-eyeglasses.jpg','\"Parfait pour les après-midis\"\nIdéal pour une pause-café, ce chococafé combine bien l\'amertume du café avec la douceur du chocolat, une véritable invitation à la relaxation.',45,'2024-11-23 11:50:29','2024-11-23 11:50:29','2024-11-23 11:50:29'),
-	(3,'Olivia','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','http://chocolatte.test/images/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg','\"Trop léger pour un chococafé\"\nJe m\'attendais à quelque chose de plus corsé, mais le goût est un peu trop doux à mon goût. Ce n\'est pas assez caféiné pour moi.',30,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29');
+	(1,'Sandra','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/young-woman-with-round-glasses-yellow-sweater.jpg','\"Excellente boisson gourmande !\"\nSi vous aimez le chocolat et le café, vous allez adorer cette boisson. Le goût est riche, la texture est parfaite, et ça vous donne un bon boost.',40,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29'),
+	(2,'Don','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/senior-man-white-sweater-eyeglasses.jpg','\"Parfait pour les après-midis\"\nIdéal pour une pause-café, ce chococafé combine bien l\'amertume du café avec la douceur du chocolat, une véritable invitation à la relaxation.',45,'2024-11-23 11:50:29','2024-11-23 11:50:29','2024-11-23 11:50:29'),
+	(3,'Olivia','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg','\"Trop léger pour un chococafé\"\nJe m\'attendais à quelque chose de plus corsé, mais le goût est un peu trop doux à mon goût. Ce n\'est pas assez caféiné pour moi.',30,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29');
 
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
