@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-06 15:59:44 +0000
+# Temps de génération: 2024-12-13 12:57:50 +0000
 # ************************************************************
 
 
@@ -60,6 +60,7 @@ CREATE TABLE `menu_page` (
   `menu_id` int unsigned NOT NULL,
   `page_id` int unsigned NOT NULL,
   `section_id` int unsigned DEFAULT NULL,
+  `order` int unsigned NOT NULL,
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `target` tinyint(1) NOT NULL,
@@ -88,14 +89,16 @@ CREATE TABLE `menus` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `menus_location_unique` (`location`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
 
 INSERT INTO `menus` (`id`, `location`, `created_at`, `updated_at`)
 VALUES
-	(1,'header','2024-11-23 12:01:33','2024-11-23 12:01:33');
+	(1,'header','2024-11-23 12:01:33','2024-11-23 12:01:33'),
+	(2,'footer','2024-12-13 13:39:35','2024-12-13 13:39:35'),
+	(3,'social_media','2024-12-13 13:39:41','2024-12-13 13:39:41');
 
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -142,18 +145,15 @@ CREATE TABLE `pages` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 
 INSERT INTO `pages` (`id`, `slug`, `template`, `created_at`, `updated_at`)
 VALUES
-	(1,'accueil','Accueil','2024-11-23 12:03:31','2024-11-23 12:03:31'),
-	(2,'à-propos','À propos','2024-11-23 12:08:21','2024-11-23 12:08:21'),
-	(3,'menu','Menu','2024-11-23 12:08:34','2024-11-23 12:08:34'),
-	(4,'avis','Avis','2024-11-23 12:08:48','2024-11-23 12:08:48'),
-	(5,'contact','Contact','2024-11-23 12:09:04','2024-11-23 12:09:04');
+	(1,'accueil','home','2024-11-23 12:03:31','2024-11-23 12:03:31'),
+	(6,'reservations','booking','2024-12-13 13:47:10','2024-12-13 13:47:10');
 
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -285,8 +285,24 @@ CREATE TABLE `sections` (
   UNIQUE KEY `slug` (`slug`),
   KEY `sections_page_id_pages_id` (`page_id`),
   CONSTRAINT `sections_page_id_pages_id` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+LOCK TABLES `sections` WRITE;
+/*!40000 ALTER TABLE `sections` DISABLE KEYS */;
+
+INSERT INTO `sections` (`id`, `slug`, `page_id`, `type`, `content`, `order`, `created_at`, `updated_at`)
+VALUES
+	(1,'hero',1,'hero','{\"title\": \"Chocolatte\"}',0,'2024-12-13 13:50:55','2024-12-13 13:50:55'),
+	(2,'a-propos',1,'about','{}',1,'2024-12-13 13:51:33','2024-12-13 13:51:33'),
+	(3,'equipe',1,'employees','{}',2,'2024-12-13 13:51:58','2024-12-13 13:51:58'),
+	(4,'menu',1,'menu','{}',3,'2024-12-13 13:52:13','2024-12-13 13:52:13'),
+	(5,'avis',1,'reviews','{}',4,'2024-12-13 13:52:30','2024-12-13 13:52:30'),
+	(6,'contact',1,'contact','{}',5,'2024-12-13 13:52:48','2024-12-13 13:52:48'),
+	(7,'header',6,'header','{}',0,'2024-12-13 13:53:23','2024-12-13 13:53:23'),
+	(8,'reservation',6,'booking','{}',1,'2024-12-13 13:53:48','2024-12-13 13:53:48');
+
+/*!40000 ALTER TABLE `sections` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
