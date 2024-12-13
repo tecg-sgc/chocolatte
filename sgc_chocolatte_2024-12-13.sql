@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-13 12:57:50 +0000
+# Temps de génération: 2024-12-13 15:35:58 +0000
 # ************************************************************
 
 
@@ -73,8 +73,22 @@ CREATE TABLE `menu_page` (
   CONSTRAINT `menu_page_menu_id_menus_id` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
   CONSTRAINT `menu_page_page_id_pages_id` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`) ON DELETE CASCADE,
   CONSTRAINT `menu_page_section_id_sections_id` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+LOCK TABLES `menu_page` WRITE;
+/*!40000 ALTER TABLE `menu_page` DISABLE KEYS */;
+
+INSERT INTO `menu_page` (`id`, `menu_id`, `page_id`, `section_id`, `order`, `label`, `title`, `target`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,1,0,'Accueil','Retour à l\'accueil du site',0,'2024-12-13 15:25:24','2024-12-13 15:25:24'),
+	(2,1,1,2,1,'À propos',NULL,0,'2024-12-13 15:25:59','2024-12-13 15:25:59'),
+	(3,1,1,4,2,'Menu',NULL,0,'2024-12-13 15:26:24','2024-12-13 15:26:24'),
+	(4,1,1,5,3,'Avis',NULL,0,'2024-12-13 15:26:51','2024-12-13 15:26:51'),
+	(5,1,1,6,4,'Contact',NULL,0,'2024-12-13 15:27:07','2024-12-13 15:27:07'),
+	(6,1,6,NULL,5,'Réservations','Placez une réservation de table',1,'2024-12-13 15:27:50','2024-12-13 15:27:50');
+
+/*!40000 ALTER TABLE `menu_page` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump de la table menus
@@ -85,6 +99,7 @@ DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -94,11 +109,11 @@ CREATE TABLE `menus` (
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
 
-INSERT INTO `menus` (`id`, `location`, `created_at`, `updated_at`)
+INSERT INTO `menus` (`id`, `location`, `title`, `created_at`, `updated_at`)
 VALUES
-	(1,'header','2024-11-23 12:01:33','2024-11-23 12:01:33'),
-	(2,'footer','2024-12-13 13:39:35','2024-12-13 13:39:35'),
-	(3,'social_media','2024-12-13 13:39:41','2024-12-13 13:39:41');
+	(1,'header','Navigation principale','2024-11-23 12:01:33','2024-11-23 12:01:33'),
+	(2,'footer','Navigation de pied de page','2024-12-13 13:39:35','2024-12-13 13:39:35'),
+	(3,'social_media','Retrouvez-nous sur ces réseaux sociaux','2024-12-13 13:39:41','2024-12-13 13:39:41');
 
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -152,7 +167,7 @@ LOCK TABLES `pages` WRITE;
 
 INSERT INTO `pages` (`id`, `slug`, `template`, `created_at`, `updated_at`)
 VALUES
-	(1,'accueil','home','2024-11-23 12:03:31','2024-11-23 12:03:31'),
+	(1,'','home','2024-11-23 12:03:31','2024-11-23 12:03:31'),
 	(6,'reservations','booking','2024-12-13 13:47:10','2024-12-13 13:47:10');
 
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
