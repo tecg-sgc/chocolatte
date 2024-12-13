@@ -5,12 +5,26 @@ class HomeController extends BaseController
     public function show()
     {
         return $this->view('home', [
+            'navigation' => $this->getMainNavigation(),
             'pre' => 'Bienvenue chez',
             'title' => 'Chocolatte',
             'employees' => Employee::getHomepageEmployees(),
             'reviews' => Review::getHomepageReviews(),
             'categories' => $this->getMenuCategories(),
         ]);
+    }
+
+    protected function getMainNavigation()
+    {
+        $menu = Menu::getMenuForLocation('header');
+
+        $menu->links = Menu::getLinksForMenu($menu);
+
+        foreach($menu->links as $link) {
+            $link->url = 'http://sgc-chocolatte.test/'.$link->page.($link->section ? '#'.$link->section : '');
+        }
+
+        return $menu;
     }
 
     protected function getMenuCategories()
