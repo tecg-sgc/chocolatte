@@ -7,7 +7,7 @@
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-06 12:36:35 +0000
+# Temps de génération: 2024-12-13 11:08:40 +0000
 # ************************************************************
 
 
@@ -60,6 +60,7 @@ CREATE TABLE `menu_page` (
   `menu_id` int unsigned NOT NULL,
   `page_id` int unsigned NOT NULL,
   `section_id` int unsigned DEFAULT NULL,
+  `order` int unsigned DEFAULT NULL,
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `target` tinyint(1) NOT NULL,
@@ -72,8 +73,22 @@ CREATE TABLE `menu_page` (
   CONSTRAINT `menu_page_menu_id_menus_id` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE,
   CONSTRAINT `menu_page_page_id_pages_id` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`) ON DELETE CASCADE,
   CONSTRAINT `menu_page_section_id_sections_id` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+LOCK TABLES `menu_page` WRITE;
+/*!40000 ALTER TABLE `menu_page` DISABLE KEYS */;
+
+INSERT INTO `menu_page` (`id`, `menu_id`, `page_id`, `section_id`, `order`, `label`, `title`, `target`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,1,0,'Accueil','Retour au-dessus de la page',0,'2024-12-13 11:20:33','2024-12-13 11:20:33'),
+	(2,1,1,2,1,'Le café',NULL,0,'2024-12-13 11:20:57','2024-12-13 11:20:57'),
+	(3,1,1,4,2,'Menu',NULL,0,'2024-12-13 11:21:31','2024-12-13 11:21:31'),
+	(4,1,1,5,3,'Avis',NULL,0,'2024-12-13 11:21:50','2024-12-13 11:21:50'),
+	(5,1,1,6,4,'Contact',NULL,0,'2024-12-13 11:22:09','2024-12-13 11:22:09'),
+	(6,1,3,NULL,5,'Réserver','Placer une réservation dans notre établissement',1,'2024-12-13 11:23:23','2024-12-13 11:23:23');
+
+/*!40000 ALTER TABLE `menu_page` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump de la table menus
@@ -84,18 +99,21 @@ DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `menus_location_unique` (`location`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
 
-INSERT INTO `menus` (`id`, `location`, `created_at`, `updated_at`)
+INSERT INTO `menus` (`id`, `location`, `title`, `created_at`, `updated_at`)
 VALUES
-	(1,'header','2024-11-23 12:01:33','2024-11-23 12:01:33');
+	(1,'header','Navigation principale','2024-11-23 12:01:33','2024-11-23 12:01:33'),
+	(2,'footer','Navigation de pied de page','2024-12-13 11:26:39','2024-12-13 11:26:39'),
+	(3,'social_media','Nos réseaux sociaux','2024-12-13 11:26:49','2024-12-13 11:26:49');
 
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -149,11 +167,9 @@ LOCK TABLES `pages` WRITE;
 
 INSERT INTO `pages` (`id`, `slug`, `template`, `created_at`, `updated_at`)
 VALUES
-	(1,'accueil','Accueil','2024-11-23 12:03:31','2024-11-23 12:03:31'),
-	(2,'à-propos','À propos','2024-11-23 12:08:21','2024-11-23 12:08:21'),
-	(3,'menu','Menu','2024-11-23 12:08:34','2024-11-23 12:08:34'),
-	(4,'avis','Avis','2024-11-23 12:08:48','2024-11-23 12:08:48'),
-	(5,'contact','Contact','2024-11-23 12:09:04','2024-11-23 12:09:04');
+	(1,'','home.php','2024-11-23 12:03:31','2024-11-23 12:03:31'),
+	(2,'a-propos','about.php','2024-11-23 12:08:21','2024-11-23 12:08:21'),
+	(3,'reservations','book.php','2024-12-13 11:22:31','2024-12-13 11:22:31');
 
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -285,8 +301,22 @@ CREATE TABLE `sections` (
   UNIQUE KEY `slug` (`slug`),
   KEY `sections_page_id_pages_id` (`page_id`),
   CONSTRAINT `sections_page_id_pages_id` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+LOCK TABLES `sections` WRITE;
+/*!40000 ALTER TABLE `sections` DISABLE KEYS */;
+
+INSERT INTO `sections` (`id`, `slug`, `page_id`, `type`, `content`, `order`, `created_at`, `updated_at`)
+VALUES
+	(1,'hero',1,'hero','{\"title\": \"test\"}',0,'2024-12-13 11:17:35','2024-12-13 11:17:35'),
+	(2,'a-propos',1,'about','{\"title\": \"test\"}',1,'2024-12-13 11:17:54','2024-12-13 11:17:54'),
+	(3,'equipe',1,'team','{\"title\": \"test\"}',2,'2024-12-13 11:18:11','2024-12-13 11:18:11'),
+	(4,'menu',1,'menu','{\"title\": \"test\"}',3,'2024-12-13 11:18:23','2024-12-13 11:18:23'),
+	(5,'avis',1,'testimonials','{\"title\": \"test\"}',4,'2024-12-13 11:18:39','2024-12-13 11:18:39'),
+	(6,'contact',1,'contact','{\"title\": \"test\"}',5,'2024-12-13 11:19:09','2024-12-13 11:19:09');
+
+/*!40000 ALTER TABLE `sections` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 

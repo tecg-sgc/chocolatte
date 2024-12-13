@@ -53,6 +53,7 @@ Bootstrap 5 HTML CSS Template
                 
             <main>
                 <nav class="navbar navbar-expand-lg">                
+                    <h2 class="hidden" style="position: absolute;visibility: hidden;width: 0;height: 0;overflow: hidden;"><?= $navigation->title; ?></h2>
                     <div class="container">
                         <a class="navbar-brand d-flex align-items-center" href="index.html">
                             <img src="images/coffee-beans.png" class="navbar-brand-image img-fluid" alt="Barista Cafe Template">
@@ -65,33 +66,19 @@ Bootstrap 5 HTML CSS Template
         
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav ms-lg-auto">
+                                <?php foreach($navigation->links as $link): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_1">Home</a>
+                                    <?php if($link->target): ?>
+                                        <a class="btn custom-btn custom-border-btn" href="<?= $link->url; ?>" target="_blank"<?= ($link->title ? ' title="'.$link->title.'"' : ''); ?>>
+                                            <?= $link->label; ?>
+                                            <i class="bi-arrow-up-right ms-2"></i>
+                                        </a>
+                                    <?php else: ?>
+                                        <a class="nav-link click-scroll" href="<?= $link->url; ?>"<?= ($link->title ? ' title="'.$link->title.'"' : ''); ?>><?= $link->label; ?></a>
+                                    <?php endif; ?>
                                 </li>
-        
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_2">About</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_3">Our Menu</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_4">Reviews</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                                </li>
+                                <?php endforeach;?>
                             </ul>
-
-                            <div class="ms-lg-3">
-                                <a class="btn custom-btn custom-border-btn" href="reservation.html">
-                                    Reservation
-                                    <i class="bi-arrow-up-right ms-2"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </nav>
