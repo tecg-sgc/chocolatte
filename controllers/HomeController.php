@@ -4,14 +4,28 @@ class HomeController extends BaseController
 {
     public function show()
     {
-        return $this->view('home', [
-            'navigation' => $this->getMainNavigation(),
-            'pre' => 'Bienvenue chez',
-            'title' => 'Chocolatte',
+        $page = $this->getHomepage();
+
+        return $this->view($page->template, [
+            'page' => $page,
             'employees' => Employee::getHomepageEmployees(),
             'reviews' => Review::getHomepageReviews(),
             'categories' => $this->getMenuCategories(),
         ]);
+    }
+
+    protected function getHomepage()
+    {
+        $page = Page::getHomepage();
+
+        $page->navigation = $this->getMainNavigation();
+        $page->sections = Section::getSectionsForPage($page);
+
+        foreach ($page->sections as $section) {
+            $section->content = json_decode($section->content);
+        }
+
+        return $page;
     }
 
     protected function getMainNavigation()
