@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Ace SQL dump
-# Version 20077
+# Version 20078
 #
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-13 11:08:40 +0000
+# Temps de génération: 2024-12-20 08:34:21 +0000
 # ************************************************************
 
 
@@ -41,10 +41,10 @@ LOCK TABLES `employees` WRITE;
 
 INSERT INTO `employees` (`id`, `name`, `job`, `description`, `img`, `created_at`, `updated_at`)
 VALUES
-	(1,'Steve','Boss','Il veille au bon fonctionnement du café.','images/team/portrait-elegant-old-man-wearing-suit.jpg','2024-11-23 11:15:57','2024-11-23 11:15:57'),
-	(2,'Sandra','Manager','Il gère à l\'organisation du café.','images/team/cute-korean-barista-girl-pouring-coffee-prepare-filter-batch-brew-pour-working-cafe.jpg','2024-11-23 11:18:53','2024-11-23 11:18:53'),
-	(3,'Jackson','Serveur','Accueillir les clients, prendre les commandes et assurer un service rapide et courtois.','images/team/small-business-owner-drinking-coffee.jpg','2024-11-23 11:20:05','2024-11-23 11:20:05'),
-	(4,'Michelle','Barista','Préparer et servir des cafés, thés et boissons spécialisées avec une présentation soignée.','images/team/smiley-business-woman-working-cashier.jpg','2024-11-23 11:20:49','2024-11-23 11:20:49');
+	(1,'Toon','Boss','Il veille au bon fonctionnement du café.','images/team/portrait-elegant-old-man-wearing-suit.jpg','2024-11-23 11:15:57','2024-11-23 11:15:57'),
+	(2,'Adrien','Manager','Il gère à l\'organisation du café.','images/team/cute-korean-barista-girl-pouring-coffee-prepare-filter-batch-brew-pour-working-cafe.jpg','2024-11-23 11:18:53','2024-11-23 11:18:53'),
+	(3,'Edyta','Serveur','Accueillir les clients, prendre les commandes et assurer un service rapide et courtois.','images/team/small-business-owner-drinking-coffee.jpg','2024-11-23 11:20:05','2024-11-23 11:20:05'),
+	(4,'Seren','Barista','Préparer et servir des cafés, thés et boissons spécialisées avec une présentation soignée.','images/team/smiley-business-woman-working-cashier.jpg','2024-11-23 11:20:49','2024-11-23 11:20:49');
 
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -60,7 +60,7 @@ CREATE TABLE `menu_page` (
   `menu_id` int unsigned NOT NULL,
   `page_id` int unsigned NOT NULL,
   `section_id` int unsigned DEFAULT NULL,
-  `order` int unsigned DEFAULT NULL,
+  `order` int unsigned NOT NULL,
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `target` tinyint(1) NOT NULL,
@@ -80,12 +80,12 @@ LOCK TABLES `menu_page` WRITE;
 
 INSERT INTO `menu_page` (`id`, `menu_id`, `page_id`, `section_id`, `order`, `label`, `title`, `target`, `created_at`, `updated_at`)
 VALUES
-	(1,1,1,1,0,'Accueil','Retour au-dessus de la page',0,'2024-12-13 11:20:33','2024-12-13 11:20:33'),
-	(2,1,1,2,1,'Le café',NULL,0,'2024-12-13 11:20:57','2024-12-13 11:20:57'),
-	(3,1,1,4,2,'Menu',NULL,0,'2024-12-13 11:21:31','2024-12-13 11:21:31'),
-	(4,1,1,5,3,'Avis',NULL,0,'2024-12-13 11:21:50','2024-12-13 11:21:50'),
-	(5,1,1,6,4,'Contact',NULL,0,'2024-12-13 11:22:09','2024-12-13 11:22:09'),
-	(6,1,3,NULL,5,'Réserver','Placer une réservation dans notre établissement',1,'2024-12-13 11:23:23','2024-12-13 11:23:23');
+	(1,1,1,1,0,'Accueil','Retour à l\'accueil du site',0,'2024-12-13 15:25:24','2024-12-13 15:25:24'),
+	(2,1,1,2,1,'À propos',NULL,0,'2024-12-13 15:25:59','2024-12-13 15:25:59'),
+	(3,1,1,4,2,'Menu',NULL,0,'2024-12-13 15:26:24','2024-12-13 15:26:24'),
+	(4,1,1,5,3,'Avis',NULL,0,'2024-12-13 15:26:51','2024-12-13 15:26:51'),
+	(5,1,1,6,4,'Contact',NULL,0,'2024-12-13 15:27:07','2024-12-13 15:27:07'),
+	(6,1,6,NULL,5,'Réservations','Placez une réservation de table',1,'2024-12-13 15:27:50','2024-12-13 15:27:50');
 
 /*!40000 ALTER TABLE `menu_page` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -112,8 +112,8 @@ LOCK TABLES `menus` WRITE;
 INSERT INTO `menus` (`id`, `location`, `title`, `created_at`, `updated_at`)
 VALUES
 	(1,'header','Navigation principale','2024-11-23 12:01:33','2024-11-23 12:01:33'),
-	(2,'footer','Navigation de pied de page','2024-12-13 11:26:39','2024-12-13 11:26:39'),
-	(3,'social_media','Nos réseaux sociaux','2024-12-13 11:26:49','2024-12-13 11:26:49');
+	(2,'footer','Navigation de pied de page','2024-12-13 13:39:35','2024-12-13 13:39:35'),
+	(3,'social_media','Retrouvez-nous sur ces réseaux sociaux','2024-12-13 13:39:41','2024-12-13 13:39:41');
 
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -160,16 +160,15 @@ CREATE TABLE `pages` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 
 INSERT INTO `pages` (`id`, `slug`, `template`, `created_at`, `updated_at`)
 VALUES
-	(1,'','home.php','2024-11-23 12:03:31','2024-11-23 12:03:31'),
-	(2,'a-propos','about.php','2024-11-23 12:08:21','2024-11-23 12:08:21'),
-	(3,'reservations','book.php','2024-12-13 11:22:31','2024-12-13 11:22:31');
+	(1,'','home','2024-11-23 12:03:31','2024-11-23 12:03:31'),
+	(6,'reservations','booking','2024-12-13 13:47:10','2024-12-13 13:47:10');
 
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -198,8 +197,8 @@ LOCK TABLES `product_categories` WRITE;
 
 INSERT INTO `product_categories` (`id`, `parent_id`, `order`, `pre`, `title`, `created_at`, `updated_at`)
 VALUES
-	(1,NULL,1,'Menu delicieux','Déjeuner','2024-11-23 11:31:03','2024-11-23 11:31:03'),
-	(2,NULL,2,'Menu favori','Boissons','2024-11-23 11:32:23','2024-11-23 11:32:23'),
+	(1,NULL,0,'Menu delicieux','Déjeuner','2024-11-23 11:31:03','2024-11-23 11:31:03'),
+	(2,NULL,1,'Menu favori','Boissons','2024-11-23 11:32:23','2024-11-23 11:32:23'),
 	(3,1,0,'Commençons par quelques','Toasts','2024-11-29 09:11:54','2024-11-29 09:11:54'),
 	(4,1,1,'Et pourquoi pas des','Oeufs','2024-11-29 09:12:14','2024-11-29 09:12:14'),
 	(5,1,2,'Gourmandise !','Desserts','2024-11-29 09:12:36','2024-11-29 09:12:36'),
@@ -263,7 +262,7 @@ CREATE TABLE `reviews` (
   `cover_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `avatar_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `rating` int NOT NULL,
+  `rating` int unsigned NOT NULL,
   `certified_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -276,7 +275,7 @@ LOCK TABLES `reviews` WRITE;
 INSERT INTO `reviews` (`id`, `customer`, `cover_img`, `avatar_img`, `content`, `rating`, `certified_at`, `created_at`, `updated_at`)
 VALUES
 	(1,'Sandra','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/young-woman-with-round-glasses-yellow-sweater.jpg','\"Excellente boisson gourmande !\"\nSi vous aimez le chocolat et le café, vous allez adorer cette boisson. Le goût est riche, la texture est parfaite, et ça vous donne un bon boost.',40,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29'),
-	(2,'Don','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/senior-man-white-sweater-eyeglasses.jpg','\"Parfait pour les après-midis\"\nIdéal pour une pause-café, ce chococafé combine bien l\'amertume du café avec la douceur du chocolat, une véritable invitation à la relaxation.',60,'2024-11-23 11:50:29','2024-11-23 11:50:29','2024-11-23 11:50:29'),
+	(2,'Don','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/senior-man-white-sweater-eyeglasses.jpg','\"Parfait pour les après-midis\"\nIdéal pour une pause-café, ce chococafé combine bien l\'amertume du café avec la douceur du chocolat, une véritable invitation à la relaxation.',45,'2024-11-23 11:50:29','2024-11-23 11:50:29','2024-11-23 11:50:29'),
 	(3,'Olivia','https://img.freepik.com/photos-premium/tasse-cafe-table-fond-marron_192217-787.jpg','images/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg','\"Trop léger pour un chococafé\"\nJe m\'attendais à quelque chose de plus corsé, mais le goût est un peu trop doux à mon goût. Ce n\'est pas assez caféiné pour moi.',30,NULL,'2024-11-23 11:50:29','2024-11-23 11:50:29');
 
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
@@ -301,19 +300,21 @@ CREATE TABLE `sections` (
   UNIQUE KEY `slug` (`slug`),
   KEY `sections_page_id_pages_id` (`page_id`),
   CONSTRAINT `sections_page_id_pages_id` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
 
 INSERT INTO `sections` (`id`, `slug`, `page_id`, `type`, `content`, `order`, `created_at`, `updated_at`)
 VALUES
-	(1,'hero',1,'hero','{\"title\": \"test\"}',0,'2024-12-13 11:17:35','2024-12-13 11:17:35'),
-	(2,'a-propos',1,'about','{\"title\": \"test\"}',1,'2024-12-13 11:17:54','2024-12-13 11:17:54'),
-	(3,'equipe',1,'team','{\"title\": \"test\"}',2,'2024-12-13 11:18:11','2024-12-13 11:18:11'),
-	(4,'menu',1,'menu','{\"title\": \"test\"}',3,'2024-12-13 11:18:23','2024-12-13 11:18:23'),
-	(5,'avis',1,'testimonials','{\"title\": \"test\"}',4,'2024-12-13 11:18:39','2024-12-13 11:18:39'),
-	(6,'contact',1,'contact','{\"title\": \"test\"}',5,'2024-12-13 11:19:09','2024-12-13 11:19:09');
+	(1,'hero',1,'hero','{\"pre\": \"Bienvenue chez\", \"title\": \"Chocolatte\", \"catchphrase\": \"Les meilleurs <em>\\\"chocolat(h)és\\\"</em> du pays !\"}',0,'2024-12-13 13:50:55','2024-12-13 13:50:55'),
+	(2,'a-propos',1,'about','{}',1,'2024-12-13 13:51:33','2024-12-13 13:51:33'),
+	(3,'equipe',1,'employees','{}',2,'2024-12-13 13:51:58','2024-12-13 13:51:58'),
+	(4,'menu',1,'menu','{}',3,'2024-12-13 13:52:13','2024-12-13 13:52:13'),
+	(5,'avis',1,'reviews','{}',4,'2024-12-13 13:52:30','2024-12-13 13:52:30'),
+	(6,'contact',1,'contact','{}',5,'2024-12-13 13:52:48','2024-12-13 13:52:48'),
+	(7,'header',6,'header','{}',0,'2024-12-13 13:53:23','2024-12-13 13:53:23'),
+	(8,'reservation',6,'booking','{}',1,'2024-12-13 13:53:48','2024-12-13 13:53:48');
 
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
 UNLOCK TABLES;
