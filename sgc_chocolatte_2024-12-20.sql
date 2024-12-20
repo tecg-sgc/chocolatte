@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Ace SQL dump
-# Version 20077
+# Version 20078
 #
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Hôte: 127.0.0.1 (MySQL 8.0.27)
 # Base de données: sgc_chocolatte
-# Temps de génération: 2024-12-13 15:35:58 +0000
+# Temps de génération: 2024-12-20 13:44:02 +0000
 # ************************************************************
 
 
@@ -156,6 +156,7 @@ CREATE TABLE `pages` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `template` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -165,10 +166,10 @@ CREATE TABLE `pages` (
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 
-INSERT INTO `pages` (`id`, `slug`, `template`, `created_at`, `updated_at`)
+INSERT INTO `pages` (`id`, `slug`, `template`, `title`, `created_at`, `updated_at`)
 VALUES
-	(1,'','home','2024-11-23 12:03:31','2024-11-23 12:03:31'),
-	(6,'reservations','booking','2024-12-13 13:47:10','2024-12-13 13:47:10');
+	(1,'','home','Bienvenue chez Chocolatte','2024-11-23 12:03:31','2024-11-23 12:03:31'),
+	(6,'reservations','booking','Réservez votre table chez Chocolatte','2024-12-13 13:47:10','2024-12-13 13:47:10');
 
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -307,7 +308,7 @@ LOCK TABLES `sections` WRITE;
 
 INSERT INTO `sections` (`id`, `slug`, `page_id`, `type`, `content`, `order`, `created_at`, `updated_at`)
 VALUES
-	(1,'hero',1,'hero','{\"title\": \"Chocolatte\"}',0,'2024-12-13 13:50:55','2024-12-13 13:50:55'),
+	(1,'hero',1,'hero','{\"pre\": \"Bienvenue chez\", \"title\": \"Chocolatte\", \"catchphrase\": \"Tout est <em>100%</em> Bio !\"}',0,'2024-12-13 13:50:55','2024-12-13 13:50:55'),
 	(2,'a-propos',1,'about','{}',1,'2024-12-13 13:51:33','2024-12-13 13:51:33'),
 	(3,'equipe',1,'employees','{}',2,'2024-12-13 13:51:58','2024-12-13 13:51:58'),
 	(4,'menu',1,'menu','{}',3,'2024-12-13 13:52:13','2024-12-13 13:52:13'),
