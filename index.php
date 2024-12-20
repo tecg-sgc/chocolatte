@@ -4,6 +4,8 @@ require_once('config.php');
 require_once('controllers/BaseController.php');
 require_once('controllers/HomeController.php');
 require_once('models/BaseModel.php');
+require_once('models/Page.php');
+require_once('models/Section.php');
 require_once('models/Menu.php');
 require_once('models/Employee.php');
 require_once('models/Review.php');

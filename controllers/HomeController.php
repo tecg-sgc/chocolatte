@@ -4,8 +4,10 @@ class HomeController extends BaseController
 {
     public function show()
     {
-        return $this->view('home', [
-            'navigation' => $this->getNavigation(),
+        $page = $this->getHomepage();
+
+        return $this->view($page->template, [
+            'page' => $page,
             'welcome' => 'Bienvenue chez',
             'title' => 'Chocolatte',
             'employees' => Employee::getHomepageEmployees(),
@@ -13,6 +15,21 @@ class HomeController extends BaseController
             'reviews' => Review::getHomepageReviews(),
             'categories' => $this->getMenuCategories(),
         ]);
+    }
+
+    protected function getHomepage()
+    {
+        $page = Page::getHome();
+
+        $page->sections = Section::getPageSections($page);
+
+        foreach($page->sections as $section) {
+            $section->content = json_decode($section->content);
+        }
+
+        $page->navigation =  $this->getNavigation();
+
+        return $page;
     }
 
     protected function getNavigation()
